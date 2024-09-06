@@ -2,6 +2,12 @@ import { HardhatUserConfig } from "hardhat/config";
 
 import "@matterlabs/hardhat-zksync";
 
+const unwrap = <T>(x: T | undefined): T => {
+  if (x == null)
+    throw new Error("Unexpected null or undefined");
+  return x;
+}
+
 const config: HardhatUserConfig = {
   defaultNetwork: "zkSyncSepoliaTestnet",
   networks: {
@@ -10,6 +16,7 @@ const config: HardhatUserConfig = {
       ethNetwork: "sepolia",
       zksync: true,
       verifyURL: "https://explorer.sepolia.era.zksync.dev/contract_verification",
+      accounts: [unwrap(process.env.PRIVATE_KEY)],
     },
     zkSyncMainnet: {
       url: "https://mainnet.era.zksync.io",
