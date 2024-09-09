@@ -2,8 +2,11 @@
 pragma solidity ^0.8.0;
 
 library GreaterHelper {
-    function addPrefix(Greeter greeter, string memory great) public view returns (string memory) {
-        return string.concat(greeter.prefix(),great);
+
+    string internal constant SEPARATOR = ": ";
+
+    function addPrefix(Greeter greeter, string memory great) internal view returns (string memory) {
+        return string.concat(greeter.prefix(),string.concat(SEPARATOR, great));
     }
 }
 
