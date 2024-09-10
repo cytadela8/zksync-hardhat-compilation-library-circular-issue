@@ -1,13 +1,9 @@
 //SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.0;
 
-library GreaterHelper {
-    function addPrefix(Greeter greeter, string memory great) public view returns (string memory) {
-        return string.concat(greeter.prefix(),great);
-    }
-}
+import "./GreaterHelper.sol";
 
-contract Greeter {
+contract Greeter is IGreater {
     string private greeting;
     string private _prefix;
 
